@@ -24,7 +24,6 @@ export const PercentCard = (props: PercentCardType): JSX.Element => {
     <>
       {cardType === "input" ? (
         <input
-          name="custom"
           value={customInput}
           onChange={customInputChangeHandler}
           placeholder="Custom"
