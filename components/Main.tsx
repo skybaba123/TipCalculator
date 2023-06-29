@@ -86,8 +86,9 @@ const Main = () => {
                   : "border-[2px] border-VeryLightGrayishCyan"
               }  `}
             >
-              <Image alt="dollar" src={iconDollar} />
+              <Image loading="lazy" alt="dollar" src={iconDollar} />
               <input
+                name="amount"
                 onFocus={() => setIsInputFocused(true)}
                 onBlur={() => setIsInputFocused(false)}
                 value={billAmountInput}
@@ -152,8 +153,9 @@ const Main = () => {
                   : "border-[2px] border-VeryLightGrayishCyan"
               }  `}
             >
-              <Image alt="dollar" src={iconPerson} />
+              <Image loading="lazy" alt="person" src={iconPerson} />
               <input
+                name="people"
                 onFocus={() => setPeopleInputFocused(true)}
                 onBlur={() => setPeopleInputFocused(false)}
                 value={peopleInput}
