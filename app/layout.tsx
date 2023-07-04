@@ -1,21 +1,21 @@
 import "./globals.scss";
-import { Inter } from "next/font/google";
+// import { Space_Mono } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+// const spaceMono = Space_Mono({ subsets: ["latin"], weight: "700" });
 
 export const metadata = {
   title: "Tip Calculator App",
   description: "Calculate your tip with ease",
 };
 
-export default function RootLayout({
-  children,
-}: {
+interface RootType {
   children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: RootType) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

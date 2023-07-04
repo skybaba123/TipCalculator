@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState, ChangeEvent, useRef } from "react";
+import React, { useState, ChangeEvent } from "react";
 import iconDollar from "../public/images/icon-dollar.svg";
 import iconPerson from "../public/images/icon-person.svg";
 import { PercentCard } from "./PercentCard";
@@ -16,7 +16,6 @@ const Main = () => {
   const [customInput, setCustomInput] = useState("");
 
   const [peopleInputError, setPeopleInputError] = useState(false);
-  //   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const amountInputChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     if (!isNaN(+e.target.value)) setBillAmountInput(e.target.value);
@@ -56,8 +55,9 @@ const Main = () => {
     if (people <= 0) {
       setPeopleInputError(true);
     } else {
-      const calcTotalTip = (percent / 100) * bill;
-      const calcTotalPerPerson = (calcTotalTip + bill) / people;
+      const percentageAmount = (percent / 100) * bill;
+      const calcTotalPerPerson = (percentageAmount + bill) / people;
+      const calcTotalTip = percentageAmount / people;
       setTipAmount(calcTotalTip);
       setTotalAmount(calcTotalPerPerson);
       setPeopleInputError(false);
@@ -69,12 +69,18 @@ const Main = () => {
     setTipAmount(0);
     setTotalAmount(0);
     setCustomInput("");
+    setPeopleInput("");
     setPeopleInputError(false);
     setIsSelected(0);
   };
 
   return (
-    <main className="bg-LightGrayishCyan h-screen flex justify-center items-center ">
+    <main className="bg-LightGrayishCyan  h-full min-h-screen flex justify-center items-center flex-col gap-10 py-10 ">
+      <div>
+        <h1 className="text-GrayishCyan">SPLI</h1>
+        <h1 className="text-GrayishCyan">TTER</h1>
+      </div>
+
       <section className="bg-White w-[650px] max-w-[85%] flex flex-col md:flex-row md:gap-6  justify-between p-5 gap-20 rounded-[15px]">
         <div className="h-[280px] w-full bg-White p-2 flex flex-col gap-5">
           <div className="flex flex-col gap-1">
@@ -88,6 +94,7 @@ const Main = () => {
             >
               <Image alt="dollar" src={iconDollar} />
               <input
+                inputMode="numeric"
                 onFocus={() => setIsInputFocused(true)}
                 onBlur={() => setIsInputFocused(false)}
                 value={billAmountInput}
@@ -154,6 +161,7 @@ const Main = () => {
             >
               <Image alt="dollar" src={iconPerson} />
               <input
+                inputMode="numeric"
                 onFocus={() => setPeopleInputFocused(true)}
                 onBlur={() => setPeopleInputFocused(false)}
                 value={peopleInput}
